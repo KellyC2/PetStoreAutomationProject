@@ -2,14 +2,17 @@ package api.tests;
 
 import api.endpoints.UserEndponits2;
 import api.payload.User;
+import api.utilities.ExtentReportManager;
 import com.github.javafaker.Faker;
 import io.restassured.response.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@ExtendWith(ExtentReportManager.class)
 public class UserTest2 {
     Faker faker;
     User userPayload;
