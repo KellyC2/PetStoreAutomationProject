@@ -10,13 +10,12 @@ import static io.restassured.RestAssured.given;
 
 public class UserEndponits2 {
 
-    public static String getBaseUrl() {
-        return getUrl().getString("base.url");
-    }
-
     public static ResourceBundle getUrl() {
         ResourceBundle routes = ResourceBundle.getBundle("routes");
         return routes;
+    }
+    public static String getBaseUrl() {
+        return getUrl().getString("base.url");
     }
 
     public static Response createUser(User payload) {
