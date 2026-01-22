@@ -1,4 +1,4 @@
-package tests;
+package api.tests;
 
 import api.endpoints.StoreEndpoints;
 import api.utilities.ExtentReportManager;
