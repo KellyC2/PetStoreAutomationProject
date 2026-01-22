@@ -20,23 +20,23 @@ public class UserTest2 {
 
     @BeforeAll
     public void setUp() {
-        this.faker = new Faker();
-        this.userPayload = new User();
-        this.userPayload.setId(this.faker.idNumber().hashCode());
-        this.userPayload.setUsername(this.faker.name().username());
-        this.userPayload.setFirstName(this.faker.name().firstName());
-        this.userPayload.setLastName(this.faker.name().lastName());
-        this.userPayload.setEmail(this.faker.internet().emailAddress());
-        this.userPayload.setPassword(this.faker.internet().password(5, 10));
-        this.userPayload.setPhone(this.faker.phoneNumber().phoneNumber());
-        this.logger = LogManager.getLogger(this.getClass());
+        faker = new Faker();
+        userPayload = new User();
+        userPayload.setId(faker.idNumber().hashCode());
+        userPayload.setUsername(faker.name().username());
+        userPayload.setFirstName(faker.name().firstName());
+        userPayload.setLastName(faker.name().lastName());
+        userPayload.setEmail(faker.internet().emailAddress());
+        userPayload.setPassword(faker.internet().password(5, 10));
+        userPayload.setPhone(faker.phoneNumber().phoneNumber());
+        logger = LogManager.getLogger(this.getClass());
     }
 
     @Test
     @Order(1)
     public void testCreateUser() {
-        this.logger.info("*** Test CreateUser ***");
-        Response response = UserEndponits2.createUser(this.userPayload);
+        logger.info("*** Test CreateUser ***");
+        Response response = UserEndponits2.createUser(userPayload);
         response.then().log().all();
         response.then().assertThat().statusCode(200);
     }
@@ -44,8 +44,8 @@ public class UserTest2 {
     @Test
     @Order(2)
     public void testReadUser() {
-        this.logger.info("*** Test ReadUser ***");
-        Response response = UserEndponits2.readUser(this.userPayload.getUsername());
+        logger.info("*** Test ReadUser ***");
+        Response response = UserEndponits2.readUser(userPayload.getUsername());
         response.then().log().all();
         response.then().assertThat().statusCode(200);
     }
@@ -53,22 +53,22 @@ public class UserTest2 {
     @Test
     @Order(3)
     public void testUpdateUser() {
-        this.logger.info("*** Test UpdateUser ***");
-        this.userPayload.setUsername(this.faker.name().username());
-        this.userPayload.setFirstName(this.faker.name().firstName());
-        this.userPayload.setLastName(this.faker.name().lastName());
-        Response response = UserEndponits2.UpdateUser(this.userPayload.getUsername(), this.userPayload);
+        logger.info("*** Test UpdateUser ***");
+        this.userPayload.setUsername(faker.name().username());
+        this.userPayload.setFirstName(faker.name().firstName());
+        this.userPayload.setLastName(faker.name().lastName());
+        Response response = UserEndponits2.UpdateUser(userPayload.getUsername(),userPayload);
         response.then().log().all();
         response.then().assertThat().statusCode(200);
-        Response responseAfterUpdate = UserEndponits2.readUser(this.userPayload.getUsername());
+        Response responseAfterUpdate = UserEndponits2.readUser(userPayload.getUsername());
         response.then().assertThat().statusCode(200);
     }
 
     @Test
     @Order(4)
     public void testDeleteUser() {
-        this.logger.info("*** Test DeleteUser ***");
-        Response response = UserEndponits2.deleteUser(this.userPayload.getUsername());
+        logger.info("*** Test DeleteUser ***");
+        Response response = UserEndponits2.deleteUser(userPayload.getUsername());
         response.then().log().all();
         response.then().assertThat().statusCode(200);
     }

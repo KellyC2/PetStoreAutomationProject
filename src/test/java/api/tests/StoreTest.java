@@ -22,21 +22,21 @@ public class StoreTest {
 
     @BeforeAll
     public void setUpData() {
-        this.faker = new Faker();
-        this.order = new Order();
-        this.order.setId(this.faker.number().numberBetween(0, 10));
-        this.order.setPetId(this.faker.number().numberBetween(0, 10));
-        this.order.setQuantity(this.faker.number().numberBetween(0, 10));
-        this.order.setShipDate(OffsetDateTime.now().toString());
-        this.order.setStatus((String)this.faker.options().nextElement(List.of("placed", "approved", "delivered")));
-        this.order.setComplete(this.faker.bool().bool());
-        this.logger = LogManager.getLogger(this.getClass());
+       faker = new Faker();
+       order = new Order();
+       order.setId(faker.number().numberBetween(0, 10));
+       order.setPetId(faker.number().numberBetween(0, 10));
+       order.setQuantity(faker.number().numberBetween(0, 10));
+       order.setShipDate(OffsetDateTime.now().toString());
+       order.setStatus((String)faker.options().nextElement(List.of("placed", "approved", "delivered")));
+       order.setComplete(faker.bool().bool());
+       logger = LogManager.getLogger(this.getClass());
     }
 
     @Test
     @org.junit.jupiter.api.Order(1)
     public void testCreateOrder() {
-        this.logger.info("*** Test CreateOrder ***");
+        logger.info("*** Test CreateOrder ***");
         Response response = StoreEndpoints.createOrder(this.order);
         response.then().log().all();
         response.then().statusCode(200);
@@ -45,7 +45,7 @@ public class StoreTest {
     @Test
     @org.junit.jupiter.api.Order(2)
     public void testReadOrder() {
-        this.logger.info("*** Test Retrieve Order ***");
+        logger.info("*** Test Retrieve Order ***");
         Response response = StoreEndpoints.readOrder(this.order.getId());
         response.then().log().all();
         response.then().statusCode(200);
@@ -54,7 +54,7 @@ public class StoreTest {
     @Test
     @org.junit.jupiter.api.Order(3)
     public void testDeleteOrder() {
-        this.logger.info("*** Test Delete Order ***");
+        logger.info("*** Test Delete Order ***");
         Response response = StoreEndpoints.deleteOrder(this.order.getId());
         response.then().log().all();
         response.then().statusCode(200);

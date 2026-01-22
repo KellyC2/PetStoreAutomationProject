@@ -26,57 +26,57 @@ public class PetTest {
 
     @BeforeAll
     public void setUp() {
-        this.faker = new Faker();
-        this.pet = new Pet();
+        faker = new Faker();
+        pet = new Pet();
         Category category = new Category();
-        category.setId(this.faker.number().numberBetween(1, 100));
-        category.setName(this.faker.name().fullName());
+        category.setId(faker.number().numberBetween(1, 100));
+        category.setName(faker.name().fullName());
 
         Tag tag = new Tag();
-        tag.setId(this.faker.number().numberBetween(1, 100));
-        tag.setName(this.faker.name().username());
+        tag.setId(faker.number().numberBetween(1, 100));
+        tag.setName(faker.name().username());
 
-        this.pet.setId(this.faker.number().numberBetween(1, 10));
-        this.pet.setName(this.faker.name().firstName());
-        this.pet.setStatus(
+        pet.setId(faker.number().numberBetween(1, 10));
+        pet.setName(faker.name().firstName());
+        pet.setStatus(
                 faker.options().option("available", "pending", "sold")
         );
-        this.pet.setCategory(category);
-        this.pet.setPhotoUrls(List.of(this.faker.internet().image(), this.faker.internet().image()));
-        this.pet.setTags(List.of(tag));
-        this.logger = LogManager.getLogger(this.getClass());
+        pet.setCategory(category);
+        pet.setPhotoUrls(List.of(faker.internet().image(),faker.internet().image()));
+        pet.setTags(List.of(tag));
+        logger = LogManager.getLogger(this.getClass());
     }
 
     @Test
     @Order(1)
     public void testCreatePet() {
-        this.logger.info("*** Test Add a new Pet ***");
-        Response response = PetEndpoints.addNewPet(this.pet);
+        logger.info("*** Test Add a new Pet ***");
+        Response response = PetEndpoints.addNewPet(pet);
         response.then().assertThat().statusCode(200);
     }
 
     @Test
     @Order(2)
     public void testReadPet() {
-        this.logger.info("*** Test Retrieve a Pet ***");
-        Response response = PetEndpoints.readPetById(this.pet.getId());
+        logger.info("*** Test Retrieve a Pet ***");
+        Response response = PetEndpoints.readPetById(pet.getId());
         response.then().assertThat().statusCode(200);
     }
 
     @Test
     @Order(3)
     public void testUpdatePet() {
-        this.logger.info("*** Test Update a Pet ***");
-        this.pet.setName(this.faker.name().firstName());
-        Response response = PetEndpoints.UpdatePet(this.pet.getId(), this.pet.getName(), this.pet.getStatus());
+        logger.info("*** Test Update a Pet ***");
+        pet.setName(faker.name().firstName());
+        Response response = PetEndpoints.UpdatePet(pet.getId(), pet.getName(), pet.getStatus());
         response.then().assertThat().statusCode(200);
     }
 
     @Test
     @Order(4)
     public void testDeletePet() {
-        this.logger.info("*** Test Delete a Pet ***");
-        Response response = PetEndpoints.deletePet(this.pet.getId());
+        logger.info("*** Test Delete a Pet ***");
+        Response response = PetEndpoints.deletePet(pet.getId());
         response.then().assertThat().statusCode(200);
     }
 }
