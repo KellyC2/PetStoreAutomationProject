@@ -1,4 +1,4 @@
-package payload;
+package api.payload;
 
 public class Order {
     private int id;

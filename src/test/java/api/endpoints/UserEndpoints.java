@@ -1,9 +1,10 @@
-package endpoints;
+package api.endpoints;
 
+import api.payload.User;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import payload.User;
+
 
 import static io.restassured.RestAssured.given;
 

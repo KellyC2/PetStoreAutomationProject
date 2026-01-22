@@ -1,6 +1,6 @@
-package payload;
+package api.payload;
 
-public class Tag {
+public class Category {
     private int id;
     private String name;
 
