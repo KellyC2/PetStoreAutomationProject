@@ -13,7 +13,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ExtendWith(ExtentReportManager.class)
-public class UserTest2 {
+public class User2Test {
     Faker faker;
     User userPayload;
     public Logger logger;

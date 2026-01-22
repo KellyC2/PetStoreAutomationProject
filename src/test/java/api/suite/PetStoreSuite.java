@@ -1,8 +1,6 @@
 package api.suite;
 
 import api.tests.*;
-import api.utilities.ExtentReportManager;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.platform.suite.api.SelectClasses;
 import org.junit.platform.suite.api.Suite;
 
@@ -12,7 +10,7 @@ import org.junit.platform.suite.api.Suite;
         PetTest.class,
         StoreTest.class,
         DataDrivenUserTest.class,
-        UserTest2.class
+        User2Test.class
 })
 public class PetStoreSuite {
 }
